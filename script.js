@@ -12,7 +12,7 @@ const projects = [
     {
         name: "Super Meat Boy Reconstructed",
         description: "Reconstrucción experimental del motor de Super Meat Boy.",
-        image: "images/supermeatboy.png",
+        image: "https://raw.githubusercontent.com/nasheOS/SuperMeatBoyReconstructed/refs/heads/main/SuperMeatBoyReconstructed/small.ico",
         github: "https://github.com/nasheos/SuperMeatBoyReconstructed",
         technologies: ["C++", "Direct3D 9", "Windows"]
     },
