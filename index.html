@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,72 +12,164 @@
 
 <body>
 
-    <header>
-        <h1>NASHE PROJECTS</h1>
+    <header class="header">
+
+        <a href="#" class="logo">
+            NASHE<span>.</span>
+        </a>
 
         <nav>
             <a href="#proyectos">Proyectos</a>
             <a href="#sobre-mi">Sobre mí</a>
+            <a href="https://github.com/nasheos" target="_blank">
+                GitHub
+            </a>
         </nav>
+
     </header>
+
 
     <main>
 
         <section class="hero">
-            <p>PORTFOLIO</p>
 
-            <h2>Mis proyectos</h2>
+            <div class="hero-content">
 
-            <span>
-                Juegos, motores y herramientas.
-            </span>
+                <p class="hero-label">
+                    NASHE PROJECTS
+                </p>
+
+                <h1>
+                    Creando cosas.
+                    <br>
+                    <span>Rompiendo límites.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Juegos, motores, herramientas y experimentos
+                    desarrollados por Nashe.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#proyectos" class="button primary">
+                        Ver proyectos
+                    </a>
+
+                    <a
+                        href="https://github.com/nasheos"
+                        target="_blank"
+                        class="button secondary"
+                    >
+                        Mi GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <section id="proyectos">
 
-            <h2>Proyectos</h2>
+        <section id="proyectos" class="projects-section">
 
-            <div class="projects">
+            <div class="section-header">
+
+                <p>PORTFOLIO</p>
+
+                <h2>Mis proyectos</h2>
+
+                <span>
+                    Una colección de proyectos en los que estoy trabajando.
+                </span>
+
+            </div>
+
+
+            <div class="filters">
+
+                <button class="filter active" data-filter="all">
+                    Todos
+                </button>
+
+                <button class="filter" data-filter="cpp">
+                    C++
+                </button>
+
+                <button class="filter" data-filter="csharp">
+                    C#
+                </button>
+
+                <button class="filter" data-filter="ps3">
+                    PS3
+                </button>
+
+                <button class="filter" data-filter="gamemaker">
+                    GameMaker
+                </button>
+
+            </div>
+
+
+            <div id="projects" class="projects-grid"></div>
+
+        </section>
+
+
+        <section id="sobre-mi" class="about-section">
+
+            <div class="about-box">
+
+                <p class="section-label">
+                    SOBRE MÍ
+                </p>
+
+                <h2>
+                    Hola, soy Nashe.
+                </h2>
+
+                <p>
+                    Me gusta desarrollar videojuegos, motores,
+                    herramientas y experimentar con diferentes
+                    plataformas y tecnologías.
+                </p>
+
+                <p>
+                    Actualmente trabajo principalmente con
+                    C++, C#, GameMaker y proyectos relacionados
+                    con PlayStation 3.
+                </p>
 
                 <a
-                    class="project"
                     href="https://github.com/nasheos"
                     target="_blank"
+                    class="button primary"
                 >
-                    <div class="project-content">
-
-                        <h3>Mis proyectos de GitHub</h3>
-
-                        <p>
-                            Ver mis proyectos y repositorios en GitHub.
-                        </p>
-
-                        <span>C++</span>
-                        <span>C#</span>
-                        <span>PS3</span>
-
-                    </div>
+                    Ver GitHub
                 </a>
 
             </div>
 
         </section>
 
-        <section id="sobre-mi">
-
-            <h2>Sobre mí</h2>
-
-            <p>
-                Desarrollo videojuegos, motores y herramientas.
-            </p>
-
-        </section>
-
     </main>
 
+
     <footer>
-        © 2026 Nashe Projects
+
+        <div>
+            <strong>NASHE PROJECTS</strong>
+        </div>
+
+        <p>
+            © 2026 Nashe. Todos los proyectos pertenecen a sus respectivos autores.
+        </p>
+
     </footer>
 
+
+    <script src="./script.js"></script>
+
 </body>
+
 </html>
