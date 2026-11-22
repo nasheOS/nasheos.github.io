@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nashe Projects</title>
+
+    <link rel="stylesheet" href="./style.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nashe Projects</title>
@@ -92,7 +99,166 @@ footer strong { color: var(--muted); }
 }
 </style>
 </head>
+
 <body>
+
+    <header class="header">
+
+        <a href="#" class="logo">
+            NASHE<span>.</span>
+        </a>
+
+        <nav>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#sobre-mi">Sobre mí</a>
+            <a href="https://github.com/nasheos" target="_blank">
+                GitHub
+            </a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="hero-label">
+                    NASHE PROJECTS
+                </p>
+
+                <h1>
+                    Creando cosas.
+                    <br>
+                    <span>Rompiendo límites.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Juegos, motores, herramientas y experimentos
+                    desarrollados por Nashe.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#proyectos" class="button primary">
+                        Ver proyectos
+                    </a>
+
+                    <a
+                        href="https://github.com/nasheos"
+                        target="_blank"
+                        class="button secondary"
+                    >
+                        Mi GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section id="proyectos" class="projects-section">
+
+            <div class="section-header">
+
+                <p>PORTFOLIO</p>
+
+                <h2>Mis proyectos</h2>
+
+                <span>
+                    Una colección de proyectos en los que estoy trabajando.
+                </span>
+
+            </div>
+
+
+            <div class="filters">
+
+                <button class="filter active" data-filter="all">
+                    Todos
+                </button>
+
+                <button class="filter" data-filter="cpp">
+                    C++
+                </button>
+
+                <button class="filter" data-filter="csharp">
+                    C#
+                </button>
+
+                <button class="filter" data-filter="ps3">
+                    PS3
+                </button>
+
+                <button class="filter" data-filter="gamemaker">
+                    GameMaker
+                </button>
+
+            </div>
+
+
+            <div id="projects" class="projects-grid"></div>
+
+        </section>
+
+
+        <section id="sobre-mi" class="about-section">
+
+            <div class="about-box">
+
+                <p class="section-label">
+                    SOBRE MÍ
+                </p>
+
+                <h2>
+                    Hola, soy Nashe.
+                </h2>
+
+                <p>
+                    Me gusta desarrollar videojuegos, motores,
+                    herramientas y experimentar con diferentes
+                    plataformas y tecnologías.
+                </p>
+
+                <p>
+                    Actualmente trabajo principalmente con
+                    C++, C#, GameMaker y proyectos relacionados
+                    con PlayStation 3.
+                </p>
+
+                <a
+                    href="https://github.com/nasheos"
+                    target="_blank"
+                    class="button primary"
+                >
+                    Ver GitHub
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div>
+            <strong>NASHE PROJECTS</strong>
+        </div>
+
+        <p>
+            © 2026 Nashe. Todos los proyectos pertenecen a sus respectivos autores.
+        </p>
+
+    </footer>
+
+
+    <script src="./script.js"></script>
 
 <header>
   <div class="wrap">
@@ -158,6 +324,7 @@ footer strong { color: var(--muted); }
 // Para agregar un proyecto, copia un bloque { ... } y cambia los datos.
 // tags puede ser: "cpp", "csharp", "ps3", "gamemaker"
 const projects = [
+
   {
     name: "Super Meat Boy Reconstructed",
     description: "Reconstrucción experimental del motor de Super Meat Boy.",
@@ -171,6 +338,13 @@ const projects = [
     github: "https://github.com/nasheos/BananaGC",
     tags: ["cpp", "ps3"],
     technologies: ["C++", "PS3", "PSL1GHT"]
+  },
+  {
+    name: "CNashe Studio",
+    description: "Editor y motor experimental para crear juegos con el lenguaje CNashe.",
+    github: "https://github.com/nasheos/CNashe-Studio",
+    tags: ["csharp"],
+    technologies: ["C#", "Engine"]
   },
   {
     name: "GameMaker Projects",
@@ -229,4 +403,5 @@ document.getElementById("count").textContent = projects.length;
 show("all");
 </script>
 </body>
+
 </html>
