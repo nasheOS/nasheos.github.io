@@ -1,175 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nashe Projects</title>
+<meta name="description" content="Juegos, motores, herramientas y experimentos de Nashe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a10;
+  --surface: #12121b;
+  --line: #262633;
+  --ink: #efeef8;
+  --muted: #9a9aae;
+  --accent: #8b8bff;
+  --cpp: #5fa8ff;
+  --csharp: #7ddc9a;
+  --gamemaker: #f0b45a;
+  --font: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); line-height: 1.6; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-    <title>Nashe Projects</title>
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    <link rel="stylesheet" href="./style.css">
+/* Header */
+header { position: sticky; top: 0; z-index: 10; background: rgba(10,10,16,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { font-weight: 700; font-size: 20px; letter-spacing: .5px; text-decoration: none; }
+.logo i { color: var(--accent); font-style: normal; }
+nav { display: flex; gap: 24px; }
+nav a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color .15s; }
+nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding: 110px 0 90px; border-bottom: 1px solid var(--line); background: radial-gradient(60% 80% at 15% 0%, #1d1d3d 0%, transparent 70%); }
+.hero h1 { font-size: clamp(44px, 8vw, 92px); line-height: 1; letter-spacing: -.035em; max-width: 12ch; margin-bottom: 28px; }
+.hero p { max-width: 52ch; color: var(--muted); font-size: 18px; margin-bottom: 34px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-block; padding: 13px 22px; border-radius: 8px; font-weight: 500; text-decoration: none; border: 1px solid var(--line); transition: transform .15s, background .15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.main { background: var(--ink); color: #0a0a10; border-color: var(--ink); }
+.btn.main:hover { background: #d9d8e6; }
+.btn.alt { background: var(--surface); }
+.stats { display: flex; gap: 40px; margin-top: 56px; color: var(--muted); font-size: 14px; }
+.stats b { display: block; color: var(--ink); font-size: 28px; font-weight: 700; }
+
+/* Projects */
+section { padding: 90px 0; }
+h2 { font-size: clamp(30px, 5vw, 44px); letter-spacing: -.02em; margin-bottom: 10px; }
+.lead { color: var(--muted); margin-bottom: 32px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.filter { background: var(--surface); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 14px; cursor: pointer; transition: color .15s, border-color .15s; }
+.filter:hover { color: var(--ink); border-color: #4a4a78; }
+.filter[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #0a0a10; font-weight: 500; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--accent)); border-radius: 10px; padding: 24px; text-decoration: none; transition: border-color .2s, transform .2s; }
+.card:hover { transform: translateY(-4px); border-color: var(--c, var(--accent)); }
+.card h3 { font-size: 21px; margin-bottom: 8px; }
+.card p { color: var(--muted); font-size: 15px; margin-bottom: 18px; flex: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.tag { background: #1b1b28; color: #c4c4ff; border-radius: 5px; padding: 3px 9px; font-size: 12px; }
+.go { color: var(--c, var(--accent)); font-size: 14px; font-weight: 500; }
+.empty { color: var(--muted); padding: 40px 0; }
+
+/* About */
+.about { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.about .wrap { max-width: 720px; }
+.about p { color: var(--muted); margin-bottom: 16px; font-size: 17px; }
+.about .btn { margin-top: 12px; }
+
+footer { padding: 40px 0; color: #6a6a7e; font-size: 13px; text-align: center; }
+footer strong { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+@media (max-width: 600px) {
+  nav { gap: 16px; }
+  nav a { font-size: 14px; }
+  .hero { padding: 70px 0 60px; }
+  .stats { gap: 28px; }
+  section { padding: 64px 0; }
+}
+</style>
 </head>
-
 <body>
 
-    <header class="header">
+<header>
+  <div class="wrap">
+    <a href="#inicio" class="logo">NASHE<i>.</i></a>
+    <nav>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="https://github.com/nasheos" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </div>
+</header>
 
-        <a href="#" class="logo">
-            NASHE<span>.</span>
-        </a>
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Creando cosas, rompiendo límites.</h1>
+      <p>Juegos, motores, herramientas y experimentos que desarrollo para PC, PS3 y más.</p>
+      <div class="actions">
+        <a class="btn main" href="#proyectos">Ver proyectos</a>
+        <a class="btn alt" href="https://github.com/nasheos" target="_blank" rel="noopener noreferrer">Mi GitHub</a>
+      </div>
+      <div class="stats">
+        <div><b id="count">0</b>proyectos</div>
+        <div><b>3</b>lenguajes</div>
+        <div><b>PS3</b>plataforma favorita</div>
+      </div>
+    </div>
+  </div>
 
-        <nav>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#sobre-mi">Sobre mí</a>
-            <a href="https://github.com/nasheos" target="_blank">
-                GitHub
-            </a>
-        </nav>
+  <section id="proyectos">
+    <div class="wrap">
+      <h2>Mis proyectos</h2>
+      <p class="lead">Una colección de lo que estoy construyendo y probando.</p>
+      <div class="filters" role="group" aria-label="Filtrar proyectos">
+        <button class="filter" data-filter="all" aria-pressed="true">Todos</button>
+        <button class="filter" data-filter="cpp" aria-pressed="false">C++</button>
+        <button class="filter" data-filter="csharp" aria-pressed="false">C#</button>
+        <button class="filter" data-filter="ps3" aria-pressed="false">PS3</button>
+        <button class="filter" data-filter="gamemaker" aria-pressed="false">GameMaker</button>
+      </div>
+      <div id="projects" class="grid"></div>
+    </div>
+  </section>
 
-    </header>
+  <section id="sobre-mi" class="about">
+    <div class="wrap">
+      <h2>Hola, soy Nashe.</h2>
+      <p>Me gusta desarrollar videojuegos, motores y herramientas, y experimentar con distintas plataformas y tecnologías.</p>
+      <p>Trabajo sobre todo con C++, C#, GameMaker y proyectos para PlayStation 3.</p>
+      <a class="btn main" href="https://github.com/nasheos" target="_blank" rel="noopener noreferrer">Ver mi GitHub</a>
+    </div>
+  </section>
+</main>
 
+<footer>
+  <div class="wrap">
+    <strong>NASHE PROJECTS</strong>
+    <p>© 2026 Nashe. Los proyectos basados en trabajo ajeno pertenecen a sus autores.</p>
+  </div>
+</footer>
 
-    <main>
+<script>
+// Para agregar un proyecto, copia un bloque { ... } y cambia los datos.
+// tags puede ser: "cpp", "csharp", "ps3", "gamemaker"
+const projects = [
+  {
+    name: "Minecraft LCE",
+    description: "Proyecto basado en Minecraft Legacy Console Edition para experimentar con contenido y tecnología de PS3.",
+    github: "https://github.com/nasheos/MinecraftLCE",
+    tags: ["cpp", "ps3"],
+    technologies: ["C++", "PS3"]
+  },
+  {
+    name: "Super Meat Boy Reconstructed",
+    description: "Reconstrucción experimental del motor de Super Meat Boy.",
+    github: "https://github.com/nasheos/SuperMeatBoyReconstructed",
+    tags: ["cpp"],
+    technologies: ["C++", "Direct3D 9"]
+  },
+  {
+    name: "Banana GC",
+    description: "Proyecto experimental de emulación de GameCube en PlayStation 3.",
+    github: "https://github.com/nasheos/BananaGC",
+    tags: ["cpp", "ps3"],
+    technologies: ["C++", "PS3", "PSL1GHT"]
+  },
+  {
+    name: "Nashe Browser",
+    description: "Navegador web experimental desarrollado con C# y .NET.",
+    github: "https://github.com/nasheos/NasheBrowser",
+    tags: ["csharp"],
+    technologies: ["C#", ".NET", "WinForms"]
+  },
+  {
+    name: "CNashe Studio",
+    description: "Editor y motor experimental para crear juegos con el lenguaje CNashe.",
+    github: "https://github.com/nasheos/CNasheStudio",
+    tags: ["csharp"],
+    technologies: ["C#", "Engine"]
+  },
+  {
+    name: "GameMaker Projects",
+    description: "Proyectos y experimentos hechos con GameMaker.",
+    github: "https://github.com/nasheos",
+    tags: ["gamemaker"],
+    technologies: ["GameMaker", "GML"]
+  }
+];
 
-        <section class="hero">
+const colors = { cpp: "var(--cpp)", csharp: "var(--csharp)", gamemaker: "var(--gamemaker)" };
+const grid = document.getElementById("projects");
+const buttons = document.querySelectorAll(".filter");
 
-            <div class="hero-content">
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
+}
 
-                <p class="hero-label">
-                    NASHE PROJECTS
-                </p>
+function createCard(p) {
+  const card = el("a", "card");
+  card.href = p.github;
+  card.target = "_blank";
+  card.rel = "noopener noreferrer";
+  card.style.setProperty("--c", colors[p.tags[0]] || "var(--accent)");
+  card.appendChild(el("h3", "", p.name));
+  card.appendChild(el("p", "", p.description));
+  const tags = el("div", "tags");
+  p.technologies.forEach(t => tags.appendChild(el("span", "tag", t)));
+  card.appendChild(tags);
+  card.appendChild(el("span", "go", "Ver en GitHub"));
+  return card;
+}
 
-                <h1>
-                    Creando cosas.
-                    <br>
-                    <span>Rompiendo límites.</span>
-                </h1>
+function show(filter) {
+  grid.replaceChildren();
+  const list = projects.filter(p => filter === "all" || p.tags.includes(filter));
+  if (list.length === 0) {
+    grid.appendChild(el("p", "empty", "Todavía no hay proyectos en esta categoría."));
+    return;
+  }
+  list.forEach(p => grid.appendChild(createCard(p)));
+}
 
-                <p class="hero-description">
-                    Juegos, motores, herramientas y experimentos
-                    desarrollados por Nashe.
-                </p>
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+    btn.setAttribute("aria-pressed", "true");
+    show(btn.dataset.filter);
+  });
+});
 
-                <div class="hero-buttons">
-
-                    <a href="#proyectos" class="button primary">
-                        Ver proyectos
-                    </a>
-
-                    <a
-                        href="https://github.com/nasheos"
-                        target="_blank"
-                        class="button secondary"
-                    >
-                        Mi GitHub
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section id="proyectos" class="projects-section">
-
-            <div class="section-header">
-
-                <p>PORTFOLIO</p>
-
-                <h2>Mis proyectos</h2>
-
-                <span>
-                    Una colección de proyectos en los que estoy trabajando.
-                </span>
-
-            </div>
-
-
-            <div class="filters">
-
-                <button class="filter active" data-filter="all">
-                    Todos
-                </button>
-
-                <button class="filter" data-filter="cpp">
-                    C++
-                </button>
-
-                <button class="filter" data-filter="csharp">
-                    C#
-                </button>
-
-                <button class="filter" data-filter="ps3">
-                    PS3
-                </button>
-
-                <button class="filter" data-filter="gamemaker">
-                    GameMaker
-                </button>
-
-            </div>
-
-
-            <div id="projects" class="projects-grid"></div>
-
-        </section>
-
-
-        <section id="sobre-mi" class="about-section">
-
-            <div class="about-box">
-
-                <p class="section-label">
-                    SOBRE MÍ
-                </p>
-
-                <h2>
-                    Hola, soy Nashe.
-                </h2>
-
-                <p>
-                    Me gusta desarrollar videojuegos, motores,
-                    herramientas y experimentar con diferentes
-                    plataformas y tecnologías.
-                </p>
-
-                <p>
-                    Actualmente trabajo principalmente con
-                    C++, C#, GameMaker y proyectos relacionados
-                    con PlayStation 3.
-                </p>
-
-                <a
-                    href="https://github.com/nasheos"
-                    target="_blank"
-                    class="button primary"
-                >
-                    Ver GitHub
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-
-        <div>
-            <strong>NASHE PROJECTS</strong>
-        </div>
-
-        <p>
-            © 2026 Nashe. Todos los proyectos pertenecen a sus respectivos autores.
-        </p>
-
-    </footer>
-
-
-    <script src="./script.js"></script>
-
+document.getElementById("count").textContent = projects.length;
+show("all");
+</script>
 </body>
-
 </html>
